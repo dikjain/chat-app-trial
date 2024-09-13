@@ -43,7 +43,7 @@ function App({username}) {
         {msgs.map((q,i)=>q.type == "message" ? (<div id="messagebox" key={i} className={`{min-w-[20%] min-h-[6%] break-words mx-[10px] px-[10px] py-[5px] ${q.id == id ? "bg-green-500 self-start" : "bg-blue-500 self-end"} rounded-xl text-center max-w-[50%] text-white}`}><span className='font-extrabold font-mono text-white'>{q.name} :</span> {q.message}</div>) : (<div id="messagebox" key={i} className={`{min-w-[20%] min-h-[6%] bg-gray-300  mx-[10px] px-[10px] py-[5px] rounded-xl text-center max-w-[50%] text-white}`}>{q.name} Joined The Chat</div>))}
         <div id="msgfield" className='absolute bottom-[5%] z-30 w-[40%] h-[7%] my-4 flex items-center justify-evenly'>
           <input type="text" value={text} onChange={(e)=>settext(e.target.value) & e.preventDefault()} id="msg" className='w-[80%] h-[80%] px-3 rounded-xl border-0 outline-none' placeholder='Enter your message...'/>
-          <button onClick={handlesubmit} className='w-[10%] h-[80%] rounded-xl bg-green-500 text-white text-xl'>Send</button>
+          <button onClick={handlesubmit} className='btn w-[10%] h-[80%] rounded-xl bg-green-500 text-white text-xl'>Send</button>
         </div>
       </div>
     </div>

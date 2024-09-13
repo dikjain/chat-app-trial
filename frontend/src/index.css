@@ -16,3 +16,36 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+@media (max-width:900px){
+  #container{
+    width: 80%;
+  }
+  #msgfield{
+    width: 80%;
+  
+  }
+  .btn{
+    width: 20%;
+  }
+  #msg{
+    width: 70%;
+  }
+  
+}
+
+@media (max-width:400px){
+  #container{
+    width: 95%;
+  }
+  #msgfield{
+    width: 90%;
+
+  }
+  .btn{
+    width: 20%;
+  }
+  #msg{
+    width: 70%;
+  }
+  
+}
