@@ -5,6 +5,7 @@ import cors from 'cors';
 import path from 'path';
 
 
+
 const port =3000
 
 const app = express();
@@ -19,6 +20,9 @@ const io = new Server(server,{cors:{
 });
 
 const __dirname = path.resolve()
+
+let users = [];
+let new_users = [];
 
 
 app.use(express.static(path.join(__dirname, 'dist')))
@@ -39,10 +43,17 @@ io.on("connection",(socket)=>{
         socket.broadcast.emit("recived-message",data);
     })
     socket.on("join",(data)=>{
-        socket.broadcast.emit("joinedmsg",data);
+        socket.broadcast.emit("recived-message",data);
+        users.push({name : data.name , id : socket.id});
+        io.emit("curr-user",users);
     })
+
+    socket.on("disconnect", () => {
+        new_users = users.filter((q)=>q.id != socket.id)
+        users = new_users;
+        socket.broadcast.emit("curr-user",users);
     
-    
+})
 })
 
 

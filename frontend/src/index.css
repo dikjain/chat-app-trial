@@ -16,7 +16,36 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+.onu{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-shadow: 0px 0px 6px black;
+}
+
+@media (min-width:900px){
+  .onu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #onlineuser{
+    font-size: 22px;
+  }
+}
 @media (max-width:900px){
+  #onlineuser{
+    width: 80%;
+    height: 10%;
+    top: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .onu{
+    text-wrap: nowrap;
+    justify-self: start;
+    width: fit-content;
+  }
   #container{
     width: 80%;
   }
@@ -32,8 +61,17 @@
   }
   
 }
+@media (max-width:600px){
+  #onlineuser{
+    font-size: 3.2vw;
+  }
+  
+}
 
 @media (max-width:400px){
+  #onlineuser{
+    font-size: 3vw;
+  }
   #container{
     width: 95%;
   }
