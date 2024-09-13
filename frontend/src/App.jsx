@@ -3,7 +3,7 @@ import {io} from 'socket.io-client'
 
 function App({username}) {
   const [msgs,setmsgs] = useState([])
-  const socket  = useMemo(()=>io("https://chat-app-3-tzqe.onrender.com/"),[]);
+  const socket  = useMemo(()=>io("https://chat-app-trial.onrender.com/"),[]);
   const [text,settext] = useState("")
 
   const [id ,setid] = useState("")
