@@ -43,15 +43,20 @@ io.on("connection",(socket)=>{
         socket.broadcast.emit("recived-message",data);
     })
     socket.on("join",(data)=>{
-        socket.broadcast.emit("recived-message",data);
+        io.emit("recived-message",data);
         users.push({name : data.name , id : socket.id});
         io.emit("curr-user",users);
     })
 
     socket.on("disconnect", () => {
-        new_users = users.filter((q)=>q.id != socket.id)
+        const user = users.find((q) => q.id === socket.id); // Find the user that disconnected
+        new_users = users.filter((q) => q.id !== socket.id);
         users = new_users;
-        socket.broadcast.emit("curr-user",users);
+        if (user) {
+            io.emit("recived-message", {name: user.name,message: "Left",type: "notification",id:user.id});
+        }
+
+        io.emit("curr-user",users);
     
 })
 })

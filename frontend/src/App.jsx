@@ -14,9 +14,11 @@ function App({username}) {
   // sending a message
   const handlesubmit = (e)=>{
     e.preventDefault();
-    socket.emit('message', {name: username ,message : text,id :id ,type: 'message'});
-    settext("");
-    setmsgs((prevMsgs) => [...prevMsgs, {name: username ,message : text , id :id ,type: 'message'}]);
+    if (text.length >0 && text != "" && text !=" ") {
+      socket.emit('message', {name: username ,message : text,id :id ,type: 'message'});
+      settext("");
+      setmsgs((prevMsgs) => [...prevMsgs, {name: username ,message : text , id :id ,type: 'message'}]);
+    }
   }
   
 
@@ -51,7 +53,7 @@ function App({username}) {
 
         </div> 
       <div id="container" className='w-[40%] overflow-y-scroll h-[70%]   py-5  rounded-xl flex flex-col items-center justify-start  bg-blue-300'>
-        {msgs.map((q,i)=>q.type == "message" ? (<div id="messagebox" key={i} className={`{min-w-[20%] w-fit my-4 min-h-fit h-fit break-words mx-[10px] px-[10px] py-[5px] ${q.id == id ? "bg-green-500 self-start" : "bg-blue-500 self-end"} rounded-xl text-center max-w-[50%] text-white}`}><span className='font-extrabold my-4 font-mono text-white'>{q.name} :</span> {q.message}</div>) : (<div id="messagebox" key={i} className={`{min-w-[20%] min-h-[6%] bg-gray-300  mx-[10px] px-[10px] py-[5px] rounded-xl my-3 text-center max-w-[50%] text-white}`}>{q.name} {q.message} The Chat</div>))}
+        {msgs.map((q,i)=>q.type == "message" ? (<div id="messagebox" key={i} className={`{min-w-[20%] w-fit my-4 min-h-fit h-fit break-words mx-[10px] px-[10px] py-[5px] ${q.id == id ? "bg-green-500 self-start" : "bg-blue-500 self-end"} rounded-xl text-center max-w-[50%] text-white}`}><span className='font-extrabold my-4 font-mono text-white'>{q.name} :</span> {q.message}</div>) : (<div id="messagebox" key={i} className={`{min-w-[20%] min-h-[6%] bg-gray-300  mx-[10px] px-[10px] py-[5px] rounded-xl my-3 text-center max-w-[50%] text-white}`}>{q.name == username ? "you" : q.name} {q.message} The Chat</div>))}
       </div>
     </div>
   )
